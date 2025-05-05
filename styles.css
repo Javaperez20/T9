@@ -1,0 +1,345 @@
+* {
+    font-family: 'Verdana';
+}
+
+h1 {
+  font-size: 27px; /* 40px → 27px */
+}
+
+h1, h2, .labelName, .labelCorreo, p, label {
+  color: white;
+}
+
+.labelName, .labelCorreo, .botones, p, label {
+  padding: 7px;     /* 10px → 7px */
+  font-size: 12px;  /* 18px → 12px */
+}
+
+input {
+  background: none;
+  color: white;
+  width: 100%;
+  border: none;
+  height: 17px;     /* 25px → 17px */
+  outline: none;
+  font-size: 12px;
+  border-bottom: 1px solid white;
+}
+
+.input-notas {
+    background: none;
+    color: white;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid white;
+    font-size: 12px;
+    padding: 7px;
+    resize: none; /* Impide que se pueda redimensionar manualmente */
+    overflow: hidden; /* Oculta scrollbars mientras se autoajusta */
+    outline: none;
+}
+
+textarea {
+  background: none;
+  color: white;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid white;
+  font-size: 12px;
+  padding: 7px;
+  outline: none
+
+}
+
+button {
+  margin: 13px;
+  height: 20px;
+  color: gray;
+  border: none;
+  background-color: white;
+  border-radius: 3px;
+  cursor: pointer;
+  box-shadow: 0 0 4px 0 black;
+}
+
+button:hover {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+button:active {
+  transform: scale(0.95); /* el botón se reduce un 5% */
+}
+/* Contenedor principal */
+.container {
+  width: 100%;
+  max-width: 804px;
+  margin: 0 auto;
+  padding: 27px;
+  background: linear-gradient(#666666, #1a1a1a);
+  border-radius: 13px;
+  box-shadow: 0 0 4px 0 black;
+}
+
+.row {
+  display: flex;
+  gap: 7px;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* Temporizador y botón PIP */
+#countdownCanvas {
+  /*border: 2px solid black;*/
+  cursor: pointer;
+  box-shadow: 0 0 4px 0 black;
+}
+#pipButton {
+  margin-top: 20px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  padding: 0 20px;
+}
+
+/* Columna derecha (OBS y archivos) */
+.column.right-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 400px;
+}
+
+/* Sección de archivos */
+.file-section {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.file-section input,
+.file-section button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Sección OBS */
+.obs-section {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.obs-section button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Estilos para el Modal Wizard */
+#wizardModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 10000;
+}
+/* Actualización para modal-content: uso de ancho relativo, max-width, scroll vertical y max-height */
+.modal-content {
+  position: relative;
+  background: #1a1a1a;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  margin: 100px auto;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+  color: white;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+.wizard-step {
+  display: none;
+}
+.wizard-step h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+.wizard-step input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  background: #333;
+  border: 1px solid #555;
+  color: white;
+  border-radius: 3px;
+}
+
+/* Botones de navegación del modal */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.nav-buttons button {
+  width: 45%;
+  padding: 8px;
+  background: white;
+  color: #1a1a1a;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botón de cerrar modal (X) */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos para el Custom Alert */
+.custom-alert {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 11000;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Estilos para los modales de Sondeo */
+.sondeo-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 10000;
+}
+
+/* Para los pasos del Sondeo (similar a wizard-step) */
+.sondeo-step {
+  display: none;
+}
+
+.sondeo-modal .wizard-step h2 { margin-bottom: 10px; font-size: 16px; }
+
+/* Media Query para dispositivos con pantallas pequeñas */
+@media (max-width: 600px) {
+  .nav-buttons {
+    flex-wrap: wrap;
+  }
+  .nav-buttons button {
+    width: 100%;
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  .modal-content {
+    margin: 20px auto;
+    padding: 15px;
+  }
+}
+
+/* Add these styles to your CSS */
+#callsTable {
+  width: 100%;
+  border-collapse: collapse;
+  color: white; /* White text for all table content */
+  background: linear-gradient(#666666, #1a1a1a);
+  border-radius: 13px;
+  overflow: hidden;
+  box-shadow: 0 0 4px 0 black;
+}
+
+#callsTable th,
+
+#callsTable td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #444;
+
+}
+
+#callsTable th {
+  background-color: #2a2a2a;
+}
+
+#callsTable tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+
+
+/* Container for the table */
+#tab2 {
+  padding: 20px;
+  background: transparent; /* Remove any existing background */
+}
+
+/* If you need to wrap the table in a container */
+.table-container {
+  background: linear-gradient(#666666, #1a1a1a);
+  border-radius: 13px;
+  box-shadow: 0 0 4px 0 black;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.acciones-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px; /* Espacio entre texto y botón */
+}
+
+#toggleSortBtn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  line-height: 0;
+}
+
+#toggleSortBtn span {
+  line-height: 1;
+}
+
+#toggleSortBtn:hover {
+  color: #007bff;
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+

@@ -1,0 +1,424 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ayudante de Tareas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Inicio: Sistema de pestañas -->
+  <div class="tabs">
+    <button class="tab-button active" data-tab="tab1">Formulario</button>
+    <button class="tab-button" data-tab="tab2">Histórico</button>
+    <button class="tab-button" data-tab="tab3" style="display:none">Pestaña 3</button>
+    <button class="tab-button" data-tab="tab4" style="display:none">Pestaña 4</button>
+    <button class="tab-button" data-tab="tab5" style="display:none">Pestaña 5</button>
+  </div>
+
+  <!-- Contenido Pestaña 1: tu interfaz actual -->
+  <div id="tab1" class="tab-content">
+    <div class="container">
+      <div class="row">
+        <!-- Columna Izquierda: Título e inputs con sus labels -->
+        <div class="column left-col">
+          <h1>Ayudante de Tareas</h1>
+          <label for="clock">DATE:</label>
+          <input type="text" class="clock" id="clock" readonly>
+
+          <label for="input-id">ID:</label>
+          <input type="text" class="input-id" id="input-id" placeholder="Ingresa el ID">
+
+          <label for="input-rut">RUT:</label>
+          <input type="text" class="input-rut" id="input-rut" placeholder="Ingresa el Rut">
+
+          <label for="input-name">NOMBRE:</label>
+          <input type="text" class="input-name" id="input-name" placeholder="Ingresa el Nombre">
+
+          <label for="input-phone1">FONO:</label>
+          <input type="text" class="input-phone1" id="input-phone1" placeholder="Ingresa el Teléfono">
+          <input type="text" class="input-phone2" id="input-phone2" placeholder="Ingresa el Teléfono Secundario">
+
+          <label for="input-ont">ONT:</label>
+          <input type="text" class="input-ont" id="input-ont" placeholder="Ingresa el ONT">
+          
+          <label for="input-olt">OLT:</label>
+          <input type="text" class="input-olt" id="input-olt" placeholder="Ingresa el OLT">
+          
+          <label for="input-nodo">TARJETA Y PUERTO:</label>
+          <input type="text" class="input-nodo" id="input-nodo" placeholder="Ingresa la Tarjeta">
+
+          <label for="input-address">DIRECCIÓN Y NODO:</label>
+          <input type="text" class="input-address" id="input-address" placeholder="Ingresa la Dirección y NODO">
+
+          <label for="input-notas">NOTAS:</label>
+          <textarea class="input-notas" placeholder="Ingresa las notas" id="input-notas"></textarea>
+
+          <button id="btn-persiste">Persiste</button>
+          <button id="btn-sondeo">Sondeo</button>
+        </div>
+
+        <!-- Columna Central: Temporizador, Checkboxes y selects -->
+        <div class="column middle-col">
+          <!-- Temporizador -->
+          <canvas id="countdownCanvas" width="200" height="100"></canvas>
+          <button id="pipButton">Desacoplar</button>
+          <video id="pipVideo" style="display:none;" muted playsinline></video>
+          
+          <h2>Internet</h2>
+          <label>
+            <input type="checkbox" class="checkbox-internet-rojo"> Internet Rojo
+          </label>
+          <select class="select-internet-rojo" style="display: none;">
+            <option value="">Selecciona un problema</option>
+            <option value="Lentitud">Luz LOS en rojo</option>
+            <option value="Intermitencia">Perdida de señal</option>
+            <option value="Luz LOS en rojo">Verde - Power Off</option>
+            <option value="Cortes frecuentes">Rojo - Desconocido</option>
+            <option value="Sin acceso">Rojo - Autofind</option>
+            <option value="Ping alto">Rojo - Offline</option>
+            <option value="Desconexión">Fuera de rango</option>
+          </select>
+
+          <label>
+            <input type="checkbox" class="checkbox-internet-verde"> Internet Verde
+          </label>
+          <select class="select-internet-verde" style="display: none;">
+            <option value="">Selecciona un problema</option>
+            <option value="Buena velocidad">Verde - Desconocido</option>
+            <option value="Estable">Verde - Autofind</option>
+            <option value="Sin interferencias">Verde - Offline</option>
+            <option value="Red segura">Sin luces - Power Off</option>
+            <option value="Conectividad óptima">ACS - Desconocido</option>
+            <option value="Ping bajo">Masiva</option>
+            <option value="Sin problemas">Acometida baja</option>
+          </select>
+
+          <label>
+            <input type="checkbox" class="checkbox-internet-base"> Internet Base
+          </label>
+          <select class="select-internet-base" style="display: none;">
+            <option value="">Selecciona un problema</option>
+            <option value="Base A">Sin internet</option>
+            <option value="Base B">Pérdida de monitoreo</option>
+            <option value="Base C">Intermitencia - Ok</option>
+            <option value="Base D">Intermitencia - Ko</option>
+            <option value="Base E">Repetidor</option>
+            <option value="Base F">Una página</option>
+            <option value="Base G">Clave Wifi</option>
+          </select>
+
+          <h2>Tv</h2>
+          <label>
+            <input type="checkbox" class="checkbox-tv-rojo"> Tv Rojo
+          </label>
+          <select class="select-tv-rojo" style="display: none;">
+            <option value="">Selecciona un problema</option>
+            <option value="Sin señal">Luz LOS en rojo</option>
+            <option value="Canales pixelados">Perdida de señal</option>
+            <option value="Sin audio">Verde - Power Off</option>
+            <option value="Control remoto fallido">Rojo - Desconocido</option>
+            <option value="Decodificador apagado">Rojo - Autofind</option>
+            <option value="Interferencia">Rojo - Offline</option>
+            <option value="Imagen distorsionada">Fuera de rango</option>
+          </select>
+
+          <label>
+            <input type="checkbox" class="checkbox-tv-verde"> Tv Verde
+          </label>
+          <select class="select-tv-verde" style="display: none;">
+            <option value="">Selecciona un problema</option>
+            <option value="Señal óptima">Verde - Desconocido</option>
+            <option value="Imagen nítida">Verde - Autofind</option>
+            <option value="Audio claro">Verde - Offline</option>
+            <option value="Control funcional">Pixelados/RF - Ok</option>
+            <option value="Deco activo">Pixelados/RF - Ko</option>
+            <option value="Canales completos">Sin señal Ok</option>
+            <option value="Sin interrupciones">Sin señal Ko</option>
+          </select>
+
+          <label>
+            <input type="checkbox" class="checkbox-tv-base"> Tv Base
+          </label>
+          <select class="select-tv-base" style="display: none;">
+            <option value="">Selecciona un problema</option>
+            <option value="Base X">Boot</option>
+            <option value="Base Y">Fallo Canal - Ok</option>
+            <option value="Base Z">Fallo Canal - Ko</option>
+            <option value="Base W">Deco Ok</option>
+            <option value="Base V">Deco Ko</option>
+            <option value="Base U">*</option>
+            <option value="Base T">*</option>
+          </select>
+
+          <!-- Nuevos checkboxes para Tv: Tv Go y Tv Go + -->
+          <label>
+            <input type="checkbox" class="checkbox-tv-go"> Tv Go
+          </label>
+          <select class="select-tv-go" style="display: none;">
+            <option value="">Selecciona un problema</option>
+            <option value="Problema 1">Error 510 Ok</option>
+            <option value="Problema 2">Error 510 Ko</option>
+            <option value="Problema 3">Sin señal Ok</option>
+            <option value="Problema 4">Sin señal Ko</option>
+            <option value="Problema 5">Sin internet Ok</option>
+            <option value="Problema 6">Sin internet Ko</option>
+            <option value="Problema 7">*</option>
+          </select>
+
+          <label>
+            <input type="checkbox" class="checkbox-tv-go-plus"> Tv Go +
+          </label>
+          <select class="select-tv-go-plus" style="display: none;">
+            <option value="">Selecciona un problema</option>
+            <option value="Problema A">Baja Ok</option>
+            <option value="Problema B">Baja Ko</option>
+            <option value="Problema C">Vincular Ok</option>
+            <option value="Problema D">Vincular Ko</option>
+            <option value="Problema E">*</option>
+            <option value="Problema F">*</option>
+            <option value="Problema G">*</option>
+          </select>
+
+          <h2>Teléfono</h2>
+          <label>
+            <input type="checkbox" class="checkbox-phone-rojo"> Teléfono Rojo
+          </label>
+          <select class="select-phone-rojo" style="display: none;">
+            <option value="">Selecciona un problema</option>
+            <option value="No recibe llamadas">Luz LOS en rojo</option>
+            <option value="No puede hacer llamadas">Perdida de señal</option>
+            <option value="Ruido en línea">Verde - Power Off</option>
+            <option value="Tono ocupado">Rojo - Desconocido</option>
+            <option value="Sin tono">Rojo - Autofind</option>
+            <option value="Desconectado">Rojo - Offline</option>
+            <option value="Corte total">Fuera de rango</option>
+          </select>
+
+          <label>
+            <input type="checkbox" class="checkbox-phone-verde"> Teléfono Verde
+          </label>
+          <select class="select-phone-verde" style="display: none;">
+            <option value="">Selecciona un problema</option>
+            <option value="Llamadas claras">Verde - Desconocido</option>
+            <option value="Buena recepción">Verde - Autofind</option>
+            <option value="Funciona perfectamente">Verde - Offline</option>
+            <option value="Sin interferencias">IDLE sin Tono - Ok</option>
+            <option value="Audio nítido">IDLE sin Tono - Ko</option>
+            <option value="Conectividad estable">REGISTE FAIL - Ok</option>
+            <option value="Sin cortes">REGISTE FAIL - Ko</option>
+          </select>
+        </div>
+
+        <!-- Columna Derecha: OBS y controles de archivo -->
+        <div class="column right-col">
+          <div class="obs-section">
+            <label for="input-obs">OBS:</label>
+            <textarea class="textarea-obs" id="input-obs"></textarea>
+            <button class="btn-copy">Copiar</button>
+            <button class="btn-clear">Limpiar</button>
+            <p class="codigo-display"></p>
+          </div>
+          <div class="file-section">
+            <button id="btn-saveExcel">Generar</button>
+            <button id="btn-deleteExcel">Borrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario oculto para envío Persiste -->
+    <form id="customForm" action="https://docs.google.com/forms/d/e/1FAIpQLSe8vDX-zzJHeFjWOVi-ci5qFurR1zUc86th2MX7yCNKWq-nvQ/formResponse" method="GET" target="hidden_iframe" style="display:none;">
+      <input type="text" id="rut" name="entry.596409908" />
+      <input type="text" id="idLlamada" name="entry.1029252672" />
+      <input type="text" id="ont" name="entry.359541124" />
+      <input type="text" id="olt" name="entry.259929954" />
+      <textarea id="observacion" name="entry.1859159833"></textarea>
+      <input type="hidden" id="cedulaHidden" name="entry.1756173374" />
+      <input type="hidden" id="servicioHidden" name="entry.748509019" />
+      <input type="hidden" id="contratoHidden" name="entry.907612803" />
+      <input type="hidden" id="monitoreoHidden" name="entry.504780451" />
+    </form>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+    <!-- Modal Wizard para Persiste -->
+    <div id="wizardModal">
+      <div class="modal-content">
+        <button type="button" class="close-btn" onclick="cancelWizard()">X</button>
+        <div id="step1" class="wizard-step">
+          <h3>Cédula</h3>
+          <input type="text" id="cedulaInput" placeholder="Ingresa la Cédula" />
+        </div>
+        <div id="step2" class="wizard-step">
+          <h3>Servicio con falla</h3>
+          <div class="options-group">
+            <label><input type="radio" name="servicioFalla" value="INTERNET"> INTERNET</label>
+            <label><input type="radio" name="servicioFalla" value="TV HD"> TV HD</label>
+            <label><input type="radio" name="servicioFalla" value="VOZ IP"> VOZ IP</label>
+            <label><input type="radio" name="servicioFalla" value="MUNDO GO"> MUNDO GO</label>
+            <label><input type="radio" name="servicioFalla" value="2 MUNDOS (INTERNET + TV)"> 2 MUNDOS (INTERNET + TV)</label>
+            <label><input type="radio" name="servicioFalla" value="2 MUNDOS (INTERNET + Telefonia)"> 2 MUNDOS (INTERNET + Telefonia)</label>
+          </div>
+        </div>
+        <div id="step3" class="wizard-step">
+          <h3>Código de contrato</h3>
+          <input type="text" id="contratoInput" placeholder="Ingresa el Código de contrato" />
+        </div>
+        <div id="step4" class="wizard-step">
+          <h3>¿Tiene pérdida de monitoreo?</h3>
+          <div class="options-group">
+            <label><input type="radio" name="monitoreo" value="SI"> SI</label>
+            <label><input type="radio" name="monitoreo" value="NO"> NO</label>
+          </div>
+        </div>
+        <div class="nav-buttons">
+          <button type="button" class="prev-btn" onclick="prevStep()">&lt;</button>
+          <button type="button" class="next-btn" onclick="nextStep()">&gt;</button>
+        </div>
+        <br><br>
+      </div>
+    </div>
+
+    <!-- Modal Wizard para Sondeo (Nuevo) -->
+    <div id="sondeoWizardModal" class="sondeo-modal">
+      <div class="modal-content">
+        <button type="button" class="close-btn" onclick="cancelSondeo()">X</button>
+        
+        <!-- Paso 1: Cédula -->
+        <div id="sondeoStep1" class="wizard-step">
+          <h2>Cédula</h2>
+          <label for="cc">Ingrese la cédula / CC:</label>
+          <input type="text" id="cc" placeholder="Número de cédula">
+        </div>
+        
+        <!-- Paso 2: Servicio con falla -->
+        <div id="sondeoStep2" class="wizard-step" style="display:none;">
+          <h2>Servicio con falla</h2>
+          <div class="options-group">
+            <label><input type="radio" name="sondeoServicioFalla" value="INTERNET"> INTERNET</label>
+            <label><input type="radio" name="sondeoServicioFalla" value="TV HD"> TV HD</label>
+            <label><input type="radio" name="sondeoServicioFalla" value="VOZ IP"> VOZ IP</label>
+            <label><input type="radio" name="sondeoServicioFalla" value="MUNDO GO"> MUNDO GO</label>
+            <label><input type="radio" name="sondeoServicioFalla" value="3 MUNDOS (Todos los servicios)"> 3 MUNDOS (Todos los servicios)</label>
+            <label><input type="radio" name="sondeoServicioFalla" value="MOVIL"> MOVIL</label>
+          </div>
+        </div>
+        
+        <!-- Paso 3: ¿Inconvenientes? -->
+        <div id="sondeoStep3" class="wizard-step" style="display:none;">
+          <h2>¿Inconvenientes?</h2>
+          <div class="options-group">
+            <label><input type="radio" name="sondeoInconvenientes" value="No"> No</label>
+            <label><input type="radio" name="sondeoInconvenientes" value="no realizo el soporte"> no realizo el soporte</label>
+            <label><input type="radio" name="sondeoInconvenientes" value="no dio solucion al inconveniente"> no dio solucion al inconveniente</label>
+            <label><input type="radio" name="sondeoInconvenientes" value="incumplimiento visita"> incumplimiento visita</label>
+            <label><input type="radio" name="sondeoInconvenientes" value="tuvo alguna discusion con el tecnico"> tuvo alguna discusion con el técnico</label>
+            <label><input type="radio" name="sondeoInconvenientes" value="instalacion deficiente"> instalación deficiente</label>
+            <label><input type="radio" name="sondeoInconvenientes" value="ont en estado desconocido"> ont en estado desconocido</label>
+            <label>
+              <input type="radio" id="sondeoOtrosRadio" name="sondeoInconvenientes" value="Otros:"> Otros:
+              <input type="text" id="sondeoOtrosInconveniente" placeholder="Especifique" style="width:70%; margin-left:5px;">
+            </label>
+          </div>
+        </div>
+        
+        <!-- Paso 4: El cliente es reincidente -->
+        <div id="sondeoStep4" class="wizard-step" style="display:none;">
+          <h2>¿El cliente es reincidente?</h2>
+          <div class="options-group">
+            <label><input type="radio" name="sondeoClienteReincidente" value="Por servicio de internet"> Por servicio de internet</label>
+            <label><input type="radio" name="sondeoClienteReincidente" value="Por servicio de tv"> Por servicio de tv</label>
+            <label><input type="radio" name="sondeoClienteReincidente" value="Por servicio de fono"> Por servicio de fono</label>
+            <label><input type="radio" name="sondeoClienteReincidente" value="Incumplimiento visita"> Incumplimiento visita</label>
+            <label><input type="radio" name="sondeoClienteReincidente" value="N/A"> N/A</label>
+          </div>
+        </div>
+        
+        <!-- Paso 5: Desde cuando presenta la falla -->
+        <div id="sondeoStep5" class="wizard-step" style="display:none;">
+          <h2>¿Desde cuando presenta la falla?</h2>
+          <label for="fallaDate">Fecha (dd/mm/aaaa):</label>
+          <input type="date" id="fallaDate">
+          <label for="fallaTime">Hora (hh:mm en 24h):</label>
+          <input type="time" id="fallaTime">
+        </div>
+        
+        <!-- Paso 6: Tiene suministro eléctrico -->
+        <div id="sondeoStep6" class="wizard-step" style="display:none;">
+          <h2>¿Tiene suministro eléctrico?</h2>
+          <div class="options-group">
+            <label><input type="radio" name="sondeoSuministroElectrico" value="SI"> SI</label>
+            <label><input type="radio" name="sondeoSuministroElectrico" value="NO"> NO</label>
+            <label><input type="radio" name="sondeoSuministroElectrico" value="N/A"> N/A</label>
+          </div>
+        </div>
+        
+        <!-- Paso 7: Tiene generador eléctrico -->
+        <div id="sondeoStep7" class="wizard-step" style="display:none;">
+          <h2>¿Tiene generador eléctrico?</h2>
+          <div class="options-group">
+            <label><input type="radio" name="sondeoGeneradorElectrico" value="SI"> SI</label>
+            <label><input type="radio" name="sondeoGeneradorElectrico" value="NO"> NO</label>
+            <label><input type="radio" name="sondeoGeneradorElectrico" value="N/A"> N/A</label>
+          </div>
+        </div>
+        
+        <!-- Paso 8: Luces en que estado -->
+        <div id="sondeoStep8" class="wizard-step" style="display:none;">
+          <h2>¿Luces en que estado?</h2>
+          <div class="options-group">
+            <label><input type="radio" name="sondeoLucesEstado" value="Luces Verdes (sin intermitencia)"> Luces Verdes (sin intermitencia)</label>
+            <label><input type="radio" name="sondeoLucesEstado" value="Luz Roja (LOS)"> Luz Roja (LOS)</label>
+            <label><input type="radio" name="sondeoLucesEstado" value="Luz (Power encendida) Sola"> Luz (Power encendida) Sola</label>
+            <label><input type="radio" name="sondeoLucesEstado" value="Luz Pon (Intermitente)"> Luz Pon (Intermitente)</label>
+            <label><input type="radio" name="sondeoLucesEstado" value="Sin Luces encendidas en la (ONT)"> Sin Luces encendidas en la (ONT)</label>
+          </div>
+        </div>
+        
+        <!-- Navegación -->
+        <div class="nav-buttons">
+          <button type="button" class="prev-btn" onclick="prevSondeoModal()">&lt;</button>
+          <button type="button" class="next-btn" onclick="nextSondeoModal()">&gt;</button>
+        </div>
+        <br><br>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="core.js"></script>
+  </div>
+
+  <!-- Contenido Pestaña 2: Histórico de llamadas -->
+<div id="tab2" class="tab-content" style="display:none">
+  <h2>Histórico de llamadas</h2>
+  <table id="callsTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre<br/><small>RUT</small></th>
+        <th>OBS</th>
+        <th>
+          <div class="acciones-header">
+          Acciones
+          <button id="toggleSortBtn"><span>⇅</span></button>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Se llena dinámicamente -->
+    </tbody>
+  </table>
+</div>
+
+
+  <!-- Pestañas 3–5: Vacías por ahora -->
+  <div id="tab3" class="tab-content" style="display:none" ><p>Info</p>
+
+  </div>
+  <div id="tab4" class="tab-content" style="display:none"><p>Pestaña 4</p></div>
+  <div id="tab5" class="tab-content" style="display:none"><p>Pestaña 5</p></div>
+
+</body>
+</html>

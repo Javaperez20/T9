@@ -872,7 +872,7 @@ btnDeleteExcel.addEventListener('click', async function () {
     const obsVal = document.querySelector('.textarea-obs').value.trim();
 
     // Construir URL de prefill
-    const baseURL = "https://docs.google.com/forms/d/e/1FAIpQLSe8vDX-zzJHeFjWOVi-ci5qFurR1zUc86th2MX7yCNKWq-nvQ/viewform?";
+    const baseURL = "https://docs.google.com/forms/d/e/1FAIpQLScBARUWj5MxH9pp9ax1QWFa-2voO9cx75yEE0q3qq_ZiD593Q/viewform?";
     const params = new URLSearchParams({
       "entry.1756173374": cedulaVal,
       "entry.748509019": servicioVal,
@@ -1071,4 +1071,5 @@ btnDeleteExcel.addEventListener('click', async function () {
   window.cancelSondeo = cancelSondeo;
   window.sendSondeoData = sendSondeoData;
 });
+
 

@@ -420,6 +420,48 @@
   <div id="tab4" class="tab-content" style="display:none"><p>Pestaña 4</p></div>
   <div id="tab5" class="tab-content" style="display:none"><p>Pestaña 5</p></div>
 
+
+<!-- Modal oculto -->
+<div id="miModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5);">
+  <div style="background:#1a1a1a; margin:10% auto; padding:10px; width:300px; text-align:center;">
+    <h1>Bienvenido</h1>
+    <p>¡Prueba el nuevo aplicativo de tipificación!<p> 
+      <a href="https://javaperez20.github.io/Hogar" target="_blank">Haz clic aquí</a></p>
+      <h2><p>-Está enlazado a tus persistes-<p></h2>
+      <h3>Primeros pasos</h3>
+      <p>* Configura tu cédula en el engranaje.</br>
+        * Activa o desactiva el cronometro.</br>
+        * Elije entre dark mode o light mode.</br> 
+        * Mientras tipificas, lo opción "Buscar casos" te ayudará a encontrar el tipo de caso que necesitas y a poner una OBS asociada a dicho caso.
+      </p>
+      <p> <p></p>
+    <button onclick="cerrarModal()">Cerrar</button>
+  </div>
+</div>
+
+<script>
+  function abrirModal() {
+    document.getElementById("miModal").style.display = "block";
+  }
+  function cerrarModal() {
+    document.getElementById("miModal").style.display = "none";
+  }
+
+  window.onload = function() {
+    // Mostrar modal al cargar
+    abrirModal();
+
+    // Reaparecer después de 4 horas
+    setTimeout(abrirModal, 4 * 60 * 60 * 1000);
+  };
+</script>
+
+
+
+
+
+  
 </body>
 </html>
+
 
